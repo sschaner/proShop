@@ -19,3 +19,12 @@ h2 {
 .rating span {
   margin: 0.1rem;
 }
+
+.shipping-free {
+  margin: 0;
+  font-size: 0.75em;
+}
+
+.placeorder-error {
+  border-bottom: 0;
+}

@@ -19,12 +19,13 @@ const PlaceOrderScreen = ({ history }) => {
   cart.itemsPrice = addDecimals(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   );
-  cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100);
+  cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100); // Shipping is $100 if Items price is below $100.
   cart.taxPrice = addDecimals(Number((0.06 * cart.itemsPrice).toFixed(2))); // 6% tax
-  (cart.totalPrice =
+  cart.totalPrice = (
     Number(cart.itemsPrice) +
     Number(cart.shippingPrice) +
-    Number(cart.taxPrice)).toFixed(2);
+    Number(cart.taxPrice)
+  ).toFixed(2);
 
   const orderCreate = useSelector((state) => state.orderCreate);
   const { order, success, error } = orderCreate;
@@ -119,7 +120,12 @@ const PlaceOrderScreen = ({ history }) => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-                  <Col>Shipping</Col>
+                  <Col>
+                    Shipping
+                    <p className='shipping-free'>
+                      Free if total items more than $100.
+                    </p>
+                  </Col>
                   <Col>${cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
@@ -136,11 +142,11 @@ const PlaceOrderScreen = ({ history }) => {
                 </Row>
               </ListGroup.Item>
 
-              <ListGroup.Item>
+              <ListGroup.Item className='placeorder-error'>
                 {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>
 
-              <ListGroup.Item>
+              <ListGroup.Item className='placeorder-button'>
                 <Button
                   type='button'
                   className='btn-block'

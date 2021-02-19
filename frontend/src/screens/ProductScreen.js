@@ -18,6 +18,7 @@ import {
   listProductDetails,
   createProductReview,
 } from '../actions/productActions';
+import { addToCart } from '../actions/cartActions';
 import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants';
 
 const ProductScreen = ({ history, match }) => {
@@ -50,7 +51,9 @@ const ProductScreen = ({ history, match }) => {
   }, [dispatch, match, succesProductReview]);
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}?qty=${qty}`);
+    dispatch(addToCart(product._id, qty));
+    history.push('/cart');
+    // history.push(`/cart/${match.params.id}?qty=${qty}`);
   };
 
   const submitHandler = (e) => {
@@ -74,7 +77,7 @@ const ProductScreen = ({ history, match }) => {
         <Message variant='danger'>{error}</Message>
       ) : (
         <>
-          <Meta productTitle={product.name} />
+          <Meta title='ProShop |' productTitle={product.name} />
           <Row>
             <Col md={6}>
               <Image src={product.image} alt={product.name} fluid />
@@ -88,9 +91,9 @@ const ProductScreen = ({ history, match }) => {
                   <Rating
                     value={product.rating}
                     text={
-                      product.numReviews >= 2
-                        ? `${product.numReviews} reviews`
-                        : `${product.numReviews} review`
+                      product.numReviews === 1
+                        ? `${product.numReviews} review`
+                        : `${product.numReviews} reviews`
                     }
                   />
                 </ListGroup.Item>

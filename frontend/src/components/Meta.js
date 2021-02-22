@@ -1,7 +1,14 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-const Meta = ({ title, description, keywords, productTitle }) => {
+const Meta = ({
+  title,
+  description,
+  keywords,
+  productTitle,
+  author,
+  ogImage,
+}) => {
   return (
     <Helmet>
       <title>
@@ -9,17 +16,10 @@ const Meta = ({ title, description, keywords, productTitle }) => {
       </title>
       <meta name='description' content={description} />
       <meta name='keywords' content={keywords} />
-      <meta name='author' content='Steven Schaner' />
+      <meta name='author' content={author} />
       <meta property='og:type' content='website' />
       <meta property='og:title' content='ProShop' />
-      <meta
-        property='og:description'
-        content='We sell the best products for cheap.'
-      />
-      <meta
-        property='og:image'
-        content='https://schanerproshopapp.herokuapp.com/images/proshop-app-screenshot.png'
-      />
+      <meta property='og:image' content={ogImage} />
       <meta
         property='og:image:secure_url'
         content='https://schanerproshopapp.herokuapp.com/images/proshop-app-screenshot.png'
@@ -46,6 +46,9 @@ Meta.defaultProps = {
   description:
     'We sell the best products for cheap. This is a fake eCommerce site. Nothing here is really for sale. This is a MERN eCommerce project.',
   keywords: 'electronics, buy electronics, cheap electronics',
+  author: 'Steve Schaner',
+  ogImage:
+    'https://schanerproshopapp.herokuapp.com/images/proshop-app-screenshot.png',
   productTitle: '',
 };
 

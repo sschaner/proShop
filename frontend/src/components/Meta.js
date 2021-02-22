@@ -18,12 +18,8 @@ const Meta = ({
       <meta name='keywords' content={keywords} />
       <meta name='author' content={author} />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='ProShop' />
-      <meta property='og:image' content={ogImage} />
-      <meta
-        property='og:image:secure_url'
-        content='https://schanerproshopapp.herokuapp.com/images/proshop-app-screenshot.png'
-      />
+      <meta property='og:title' content={title} />
+      <meta property='og:image:secure_url' content={ogImageSecure} />
       <meta property='og:image:width' content='1910' />
       <meta property='og:image:height' content='901' />
       <meta
@@ -48,6 +44,8 @@ Meta.defaultProps = {
   keywords: 'electronics, buy electronics, cheap electronics',
   author: 'Steve Schaner',
   ogImage:
+    'https://schanerproshopapp.herokuapp.com/images/proshop-app-screenshot.png',
+  ogImageSecure:
     'https://schanerproshopapp.herokuapp.com/images/proshop-app-screenshot.png',
   productTitle: '',
 };
